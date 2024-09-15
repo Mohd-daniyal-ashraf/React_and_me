@@ -15,7 +15,7 @@ function App() {
 
   //actual change
   useEffect(() => {
-    let htmlbody = document.querySelector("html");
+    let htmlbody = document.querySelector("body");
     htmlbody.classList.remove("light", "dark");
     htmlbody.classList.add(themeMode);
   });
