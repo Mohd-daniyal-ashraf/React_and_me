@@ -2,7 +2,7 @@ import React from "react";
 
 function Button({
   chilren,
-  type = "buttton",
+  type = "button",
   classname = "",
   textColor = "text-white",
   bgColor = "bg-blue-600",
