@@ -3,33 +3,34 @@ import { Container, Logo, Logoutbtn } from "../index";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
   const naItems = [
     {
       name: "Home",
-      slud: "/",
+      slug: "/",
       active: true,
     },
     {
       name: "Login",
-      slud: "/login",
+      slug: "/login",
       active: !authStatus,
     },
     {
-      name: "Singup",
-      slud: "/signup",
+      name: "Signup",
+      slug: "/signup",
       active: !authStatus,
     },
     {
-      name: "All Post",
-      slud: "/all-posts",
+      name: "All Posts",
+      slug: "/all-posts",
       active: authStatus,
     },
     {
       name: "Add Post",
-      slud: "/add-post",
+      slug: "/add-post",
       active: authStatus,
     },
   ];
@@ -46,7 +47,9 @@ function Header() {
             {naItems.map((item) =>
               item.active ? (
                 <li key={item.name}>
-                  <button onClick={() => navigate}>{item.name}</button>
+                  <button onClick={() => navigate(item.slug)}>
+                    {item.name}
+                  </button>
                 </li>
               ) : null
             )}

@@ -1,5 +1,5 @@
 import { Client, ID, Databases, Storage, Query } from "appwrite";
-import conf from "../conf/conf";
+import conf from "../conf/conf.js";
 
 export class Service {
   client = new Client();
@@ -22,7 +22,6 @@ export class Service {
         slug,
         {
           title,
-          slug,
           content,
           featuredImage,
           status,
@@ -53,7 +52,7 @@ export class Service {
 
   async deletePost(slug) {
     try {
-      return await this.databases.createDocument(
+      await this.databases.deleteDocument(
         conf.appWriteDatabase,
         conf.appWriteColletionId,
         slug
@@ -106,7 +105,7 @@ export class Service {
 
   async deleteFile(fileId) {
     try {
-      await this.bucket.createFile(conf.appWriteBucketId, fileId);
+      await this.bucket.deleteFile(conf.appWriteBucketId, fileId);
       return true;
     } catch (err) {
       console.log("Appwrite Error : DeleteFile Error");

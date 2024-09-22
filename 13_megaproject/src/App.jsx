@@ -4,6 +4,7 @@ import authService from "./appwrite/auth";
 import { Header, Footer } from "./componants/index";
 import "./App.css";
 import { login, logout } from "./store/authSlice";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -21,13 +22,16 @@ function App() {
       })
       .finally(() => setLoading(false));
   }, []);
+
   return !loading ? (
-    <div className="min-h-screen text-red-500 flex flex-wrap content-between bg-gray-800">
-      hivhdkf
-      <div className="w-full block"></div>
-      <Header />
-      <main>{/* outlet */}</main>
-      <Footer />
+    <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+      <div className="w-full block">
+        <Header />
+        <main>
+          TODO: <Outlet />
+        </main>
+        <Footer />
+      </div>
     </div>
   ) : null;
 }

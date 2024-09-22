@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import store from "./store/store.js";
 import { Provider } from "react-redux";
-import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
@@ -78,6 +78,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <Router.Provider router={router}/>
+    <RouterProvider router={router} />
   </Provider>
 );
