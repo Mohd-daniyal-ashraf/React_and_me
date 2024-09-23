@@ -7,16 +7,17 @@ import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
 
 function Login() {
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
   const login = async (data) => {
+    setError("");
     try {
       const session = await authService.login(data);
       if (session) {
-        const userdata = authService.getCurrentuser();
-        if (userdata) dispacth(authLogin(userdata));
+        const userdata =await authService.getCurrentuser();
+        if (userdata) dispatch(authLogin(userdata));
         navigate("/");
       }
     } catch (err) {
@@ -73,7 +74,7 @@ function Login() {
                 required: true,
               })}
             ></Input>
-            <Button chilren="SignUp"></Button>
+            <Button children="Sign in"></Button>
           </div>
         </form>
       </div>

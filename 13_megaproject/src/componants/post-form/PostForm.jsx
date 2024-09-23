@@ -6,14 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 
 export default function PostForm({ post }) {
-  const { register, handleSubmit, watch, setValue, getValues } = useForm({
-    defaultValues: {
-      title: post.title || "",
-      content: post.connect || "",
-      slug: post.slug || "",
-      status: post.status || "",
-    },
-  });
+  const { register, handleSubmit, control, watch, setValue, getValues } =
+    useForm({
+      defaultValues: {
+        title: post.title || "",
+        content: post.connect || "",
+        slug: post.slug || "",
+        status: post.status || "active",
+      },
+    });
 
   const navigate = useNavigate();
   const userdata = useSelector((state) => state.user.userdata);
@@ -56,8 +57,8 @@ export default function PostForm({ post }) {
       return value
         .trim()
         .toLowerCase()
-        .replace(/^[a-zA-Z\d\s]+/g, "_")
-        .replace(/\s/g, "_");
+        .replace(/[^a-zA-Z\d\s]+/g, "-")
+        .replace(/\s/g, "-");
     }
     return "";
   }, {});

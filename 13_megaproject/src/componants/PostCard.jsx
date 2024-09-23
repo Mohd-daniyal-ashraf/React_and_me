@@ -7,7 +7,7 @@ function PostCard({ $id, title, featuredImage }) {
       <div className="w-full bg-gray-100 rounded-xl p-4">
         <div className="justify-center w-full mb-4">
           <img
-            src={service.getFilePreview(featuredImage)}
+            src={appwriteService.getFilePreview(featuredImage)}
             alt={title}
             className="rounded-xl"
           />
