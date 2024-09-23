@@ -14,10 +14,10 @@ function Signup() {
 
   const create = async (data) => {
     try {
-      const userdata = await authService.login(data);
-      if (userdata) {
-        const userdata = authService.getCurrentuser();
-        if (userdata) dispatch(login(userdata));
+      const userData = await authService.login(data);
+      if (userData) {
+        const userData = authService.getCurrentuser();
+        if (userData) dispatch(login(userData));
         navigate("/");
       }
     } catch (error) {

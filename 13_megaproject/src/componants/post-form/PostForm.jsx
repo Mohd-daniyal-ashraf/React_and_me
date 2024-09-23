@@ -9,16 +9,16 @@ export default function PostForm({ post }) {
   const { register, handleSubmit, control, watch, setValue, getValues } =
     useForm({
       defaultValues: {
-        title: post.title || "",
-        content: post.connect || "",
-        slug: post.slug || "",
-        status: post.status || "active",
+        title: post?.title || "",
+        slug: post?.$id || "",
+        content: post?.content || "",
+        status: post?.status || "active",
       },
     });
 
   const navigate = useNavigate();
-  const userdata = useSelector((state) => state.user.userdata);
-
+  const userData = useSelector((state) => state.auth.userData);
+console.log
   const submit = async (data) => {
     if (post) {
       const file = data.image[0]
@@ -43,7 +43,7 @@ export default function PostForm({ post }) {
         data.featuredImage = fileid;
         const dbpost = await appwriteservice.createPost({
           ...data,
-          userId: userdata.$id,
+          userId: userData.$id,
         });
         if (dbpost) {
           navigate(`/post/${dbpost.$id}`);
